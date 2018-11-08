@@ -1,0 +1,59 @@
+archetype (adl_version=1.4; uid=839ab12c-eb0b-310a-86a4-bd4931c45211)
+	openEHR-EHR-SECTION.referral_details.v1
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"07/03/2010">
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Heath Frankel, Ocean Informatics, Australia","Ian McNicoll, Ocean Informatics, United Kingdom">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To demonstrate a design pattern for representation of an Referral Request.">
+			keywords = <"referral","request">
+			copyright = <"copyright (c) 2010 openEHR foundation">
+			use = <"Use within a COMPOSITION related to referral, such as COMPOSITION.referral.
+Supporting summary information can be added to the COMPOSITION slots - for example, SECTION.adverse_list, SECTION.problem_list, SECTION.medication_order_list.">
+		>
+	>
+	other_details = <
+		["references"] = <"">
+		["MD5-CAM-1.0.1"] = <"77FF1F18C4DC89FD43CAA1B5D5E03CE2">
+		["build_uid"] = <"93d859e9-b040-35ca-a3b7-f803dd7e2e44">
+	>
+
+definition
+	SECTION[at0000] matches {    -- Referral Details
+		items cardinality matches {0..*; unordered} matches {
+			allow_archetype INSTRUCTION[at0001] occurrences matches {0..1} matches {    -- Referral Request
+				include
+					archetype_id/value matches {/openEHR-EHR-INSTRUCTION\.request(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Referral Details">
+					description = <"To demonstrate a design pattern for representation Referral details within a Referral composition.">
+				>
+				["at0001"] = <
+					text = <"Referral Request">
+					description = <"Slot constrained to specifically include archetypes representing referral requests.">
+				>
+			>
+		>
+	>

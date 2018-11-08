@@ -1,0 +1,72 @@
+archetype (adl_version=1.4; uid=d346e834-a92e-3ac9-937c-eb4eb967ef5c)
+	openEHR-EHR-CLUSTER.triage_priority.v1
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2013-03-18">
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+	>
+	lifecycle_state = <"CommitteeDraft">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record a category or required response time for a subject's treatment within a specific clinical care context.">
+			keywords = <"triage","priority","urgency","emergency","screening">
+			copyright = <"© National E-Health Transition Authority">
+			use = <"Use to record a category or required response time for a subject's treatment within a specific clinical care context.
+
+This archetype has been designed to provide a framework for any category, which may be specifically defined for a specific clinical location or event within a template for a specified clinical scenario. Similarly the triage priority may be time-related, by recording that the patient must be attended to within a specified timeframe.">
+		>
+	>
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+		["MD5-CAM-1.0.1"] = <"95C7454F798D4E2E9BB9EF633AFCF50A">
+		["build_uid"] = <"b5e081e4-b33d-37a0-b60b-be4c5b71777b">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Triage Priority
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Priority Category
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {    -- Required Response Time
+				value matches {
+					DV_DURATION matches {
+						value matches {PTHM/|>=PT0S|}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Triage Priority">
+					description = <"Subject's treatment urgency and/or order within a specific clinical care context, such as the scene of an accident or a hospital emergency room, where there are insufficient resources for all to be treated immediately. Triage priority is established after a clinician's, or trained lay person's, assessment of the seriousness of their condition.">
+				>
+				["at0001"] = <
+					text = <"Priority Category">
+					description = <"Category of triage priority.">
+					comment = <"There are many examples of triage categories in use. This archetype allows for any and all to be modelled by inclusion of specific values in this data element within a template for a specific clinical scenario. For example: High or Low; Now (immediate/life-threatening), Soon (urgent, up to 1 hour), Walk (delayed; up to 3 hours), Dead (no care required); or multiple locally defined categories.">
+				>
+				["at0002"] = <
+					text = <"Required Response Time">
+					description = <"Time period within which a respose is required.">
+				>
+			>
+		>
+	>

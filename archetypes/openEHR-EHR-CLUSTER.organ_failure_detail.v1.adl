@@ -1,0 +1,90 @@
+archetype (adl_version=1.4; uid=3cf08441-9589-490f-87a0-c2ab978a3ca3)
+	openEHR-EHR-CLUSTER.organ_failure_detail.v1
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2018-10-05">
+		["name"] = <"Wouter Zanen">
+		["organisation"] = <"Eurotransplant">
+		["email"] = <"w.zanen@eurotransplant.org">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Purpose:
+To record organ failure after transplant. Report 1 failed grafts. Graft-id is the internal Eurotransplant graft id.">
+			use = <"To record graft failure after transplantation of a graft or multiple grafts. One should filter \"cause of failure\" reasons to reflect the selected failed graft organ types. Expected to be used with the Problem Diagnosis archetype in the Specific details slot as part of an Organ Failure report template. 
+
+Graft ID should be provided which is derived from CORE
+Transplantation ID needs to be provided as long as the ENIS system is being synchronised
+Explantation date should be entered if the explanted organ was explanted because of organ failure">
+			misuse = <"Reporting of organ failure not related to a transplanted graft. Date of explantation should not be entered if the organ was removed to be retransplanted in a different recipient (domino). ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"Pathfinder">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"ef4f8ce5b21cd3168bbf7e1c81bc5ebf">
+		["build_uid"] = <"f82cad51-a07f-3afd-8ec3-c1aaef14e0a6">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Organ failure detail
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Graft ID
+				value matches {
+					DV_IDENTIFIER matches {
+						issuer matches {/Eurotransplant - Pathfinder/}
+						type matches {/CORE graft ID/}
+					}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {    -- Transplant ID
+				value matches {
+					DV_IDENTIFIER matches {
+						issuer matches {/Eurotransplant/}
+						type matches {/TRANSPLANT.TXP_REGN/}
+					}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {    -- Date/Time start of explantation
+				value matches {
+					DV_DATE_TIME matches {*}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Organ failure detail">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Graft ID">
+					description = <"Graft ID derived from CORE">
+				>
+				["at0002"] = <
+					text = <"Transplant ID">
+					description = <"Transplantation id as used in ENIS to idetify the graft.">
+				>
+				["at0003"] = <
+					text = <"Date/Time start of explantation">
+					description = <"Date/time of start explantation of the transplanted graft after organ failue.">
+				>
+			>
+		>
+	>

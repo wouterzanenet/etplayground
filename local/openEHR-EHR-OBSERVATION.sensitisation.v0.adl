@@ -1,0 +1,95 @@
+archetype (adl_version=1.4; uid=748bd76c-3163-4f97-8dc9-16921f124b52)
+	openEHR-EHR-OBSERVATION.sensitisation.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2018-11-01">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"17b49d8975d247ced0c8d3bc14667216">
+		["build_uid"] = <"efd94bdb-d822-3a11-9167-a39894b923cc">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Sensitisation
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {0..*; unordered} matches {
+					POINT_EVENT[at0002] matches {    -- Before first transplant
+						data matches {
+							ITEM_TREE[at0003] matches {    -- ItemTree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] matches {    -- Sensitised
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									allow_archetype CLUSTER[at0004] occurrences matches {0..*} matches {    -- Highest
+										include
+											archetype_id/value matches {/.*/}
+									}
+									allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Current
+										include
+											archetype_id/value matches {/.*/}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sensitisation">
+					description = <"Sensitisation">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"*">
+				>
+				["at0002"] = <
+					text = <"Before first transplant">
+					description = <"Before first transplant">
+				>
+				["at0003"] = <
+					text = <"ItemTree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Highest">
+					description = <"Highest value known before transplant.">
+				>
+				["at0005"] = <
+					text = <"Current">
+					description = <"Last value known before transplant.">
+				>
+				["at0006"] = <
+					text = <"Sensitised">
+					description = <"Sensitised before first transplant.">
+				>
+			>
+		>
+	>

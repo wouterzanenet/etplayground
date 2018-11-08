@@ -1,0 +1,173 @@
+archetype (adl_version=1.4; uid=d8a6a9a4-c28d-3894-8287-d38e1896c772)
+	openEHR-EHR-CLUSTER.histoimmunogenetic_typing.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2017-03-20">
+		["name"] = <"Wouter Zanen, Laura Boogert">
+		["organisation"] = <"Eurotransplant International Foundation">
+		["email"] = <"w.zanen@eurotransplant.org">
+	>
+	lifecycle_state = <"0">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"For registering an HLA (Human Leukocyte Antigens) based on the Histoimmunogetic typing Markup Language (HML). ">
+			use = <"Should be used with the Lab result observation archetype to register the specific sample and date/time collection of that sample. ">
+			misuse = <"Should not be used for Antibody screening purposes. ">
+		>
+	>
+	other_details = <
+		["references"] = <"https://bioinformatics.bethematchclinical.org/hla-resources/hml/
+https://schemas.nmdp.org/
+https://www.ncbi.nlm.nih.gov/pubmed/23849068
+http://hla.alleles.org/antigens/index.html">
+		["MD5-CAM-1.0.1"] = <"c580b88c5c337bc82018ecf2e9bc5f90">
+		["build_uid"] = <"5566c6bc-d209-350e-9b26-ef7ce7cb7108">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Histoimmunogenetic typing
+		items cardinality matches {3..*; unordered} matches {
+			ELEMENT[at0003] matches {    -- Gene family
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {
+							[local::at0004;at0004]    -- HLA
+						}
+					}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..1} matches {    -- Typing date
+				value matches {
+					DV_DATE_TIME matches {*}
+				}
+			}
+			allow_archetype CLUSTER[at0006] occurrences matches {0..*} matches {    -- Typing method
+				include
+					archetype_id/value matches {/.*/}
+			}
+			CLUSTER[at0007] matches {    -- Allel-Assignment
+				items cardinality matches {1..*; unordered} matches {
+					CLUSTER[at0037] occurrences matches {1..*} matches {    -- Haploid
+						items cardinality matches {1..*; unordered} matches {
+							allow_archetype CLUSTER[at0035] occurrences matches {1..*} matches {    -- Antigen
+								include
+									archetype_id/value matches {/openEHR-EHR-CLUSTER\.antigen(-[a-zA-Z0-9_]+)*\.v0/}
+								exclude
+									archetype_id/value matches {/.*/}
+							}
+						}
+					}
+					ELEMENT[at0022] occurrences matches {0..1} matches {    -- glstring
+						value matches {
+							DV_URI matches {*}
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0026] occurrences matches {0..1} matches {    -- Allele DB
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0027] occurrences matches {0..1} matches {    -- Allele Version
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0029] occurrences matches {0..1} matches {    -- Date
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+				}
+			}
+			allow_archetype CLUSTER[at0017] occurrences matches {0..*} matches {    -- Consensus sequence
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0038] occurrences matches {0..*} matches {    -- Property
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.hla_phenotype(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Histoimmunogenetic typing">
+					description = <"A laboratory typing methodology to describe human leukocyte antigen (HLA) testing results and primary data.">
+				>
+				["at0003"] = <
+					text = <"Gene family">
+					description = <"Represents the gene evaluated in this typing report, e.g.
+\"HLA\" or \"KIR\".">
+				>
+				["at0004"] = <
+					text = <"HLA">
+					description = <"Human Leukocyte Antigen
+">
+				>
+				["at0005"] = <
+					text = <"Typing date">
+					description = <"Typing/testing date for this sample.">
+				>
+				["at0006"] = <
+					text = <"Typing method">
+					description = <"Typing method used (ex: \"DNA\", \"SER\").">
+				>
+				["at0007"] = <
+					text = <"Allel-Assignment">
+					description = <"Specifies the genotyping call at the most specific level possible.
+This call can be represented within haploid elements or using gl-
+resources. When reporting data using haploid, typical use is one
+or two haploid elements for a particular locus, but possibly more if
+multiple loci are covered (ex: two DRB1 haploids + one DRB3 haploid).">
+				>
+				["at0017"] = <
+					text = <"Consensus sequence">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"glstring">
+					description = <"Genotype List String (GL String) format for the
+interpretation of a typing result, or a URI identifying a resource in
+GL String format.">
+				>
+				["at0026"] = <
+					text = <"Allele DB">
+					description = <"Database or other source for nomenclature used in the
+interpretation. (ex: \"IMGT-HLADB\").">
+				>
+				["at0027"] = <
+					text = <"Allele Version">
+					description = <"A specific version of the allele-db (ex: \"3.18.0\").">
+				>
+				["at0029"] = <
+					text = <"Date">
+					description = <"Date on which the typing was carried out, or on which the final call was determined.">
+				>
+				["at0035"] = <
+					text = <"Antigen">
+					description = <"Human Leucocyte Antigen.">
+				>
+				["at0037"] = <
+					text = <"Haploid">
+					description = <"Specifies one-half of a full typing at a particular locus. Must conform to the database specified in allele-assignment/interpretation.">
+				>
+				["at0038"] = <
+					text = <"Property">
+					description = <"*">
+				>
+			>
+		>
+	>

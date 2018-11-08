@@ -1,0 +1,149 @@
+archetype (adl_version=1.4; uid=74e3b7e9-978d-483b-a2db-333beae5bf1f)
+	openEHR-EHR-OBSERVATION.transplant.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2018-11-06">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"848f9d16cce23b3b38205a3a1baaf398">
+		["build_uid"] = <"c562d1cf-b92d-3e75-9a03-23555240021c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Transplant
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {0..*; unordered} matches {
+					POINT_EVENT[at0002] matches {    -- At Transplant
+						data matches {
+							ITEM_TREE[at0003] matches {    -- ItemTree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Age at Transplant
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"yr">
+														magnitude = <|>=0.0|>
+														precision = <|2|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Graft ID
+										value matches {
+											DV_IDENTIFIER matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Patient Country
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									CLUSTER[at0006] occurrences matches {0..1} matches {    -- Cold Ischemic Time
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {    -- Time
+												value matches {
+													DV_DURATION matches {
+														value matches {PTHM/|>=PT0S|}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						offset matches {
+							DV_DURATION matches {
+								value matches {P1Y}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- ItemTree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Transplant ID
+						value matches {
+							DV_IDENTIFIER matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Transplant">
+					description = <"Transplant">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"*">
+				>
+				["at0002"] = <
+					text = <"At Transplant">
+					description = <"The year the patient was transplanted.">
+				>
+				["at0003"] = <
+					text = <"ItemTree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"ItemTree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Transplant ID">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Cold Ischemic Time">
+					description = <"Time elapsed between the time of clamping of the aorta and the time of declamping.  For DCD: Time elapsed between circulatory arrest and the time of declamping. ">
+				>
+				["at0007"] = <
+					text = <"Time">
+					description = <"Can be stored in minutes, or in two separate fields, one for minutes and one for hours">
+				>
+				["at0008"] = <
+					text = <"Graft ID">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Age at Transplant">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Patient Country">
+					description = <"Country where recipient is registered as recipient at time of transplant.">
+				>
+			>
+		>
+	>
