@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"a3067507c0ee2088d13e6f43818eccae">
+		["MD5-CAM-1.0.1"] = <"7a970abf6753fa86dc51a36c4b726a65">
 		["build_uid"] = <"138ed2c6-81b9-3066-9886-c57b0661c0c7">
 	>
 
@@ -32,28 +32,41 @@ definition
 		data matches {
 			ITEM_TREE[at0001] matches {    -- ItemTree
 				items cardinality matches {0..*; unordered} matches {
-					allow_archetype CLUSTER[at0003] occurrences matches {0..*} matches {    -- Procedure details
-						include
-							archetype_id/value matches {/.*/}
-					}
 					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Transplant date
 						value matches {
 							DV_DATE_TIME matches {*}
 						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Structured body site
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0010] occurrences matches {0..*} matches {    -- Grafts
+						include
+							archetype_id/value matches {/.*/}
+					}
+					allow_archetype CLUSTER[at0003] occurrences matches {0..*} matches {    -- Procedure details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Organ specific details
+						include
+							archetype_id/value matches {/.*/}
 					}
 					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Pre-emptive transplant
 						value matches {
 							DV_TEXT matches {*}
 						}
 					}
-					CLUSTER[at0014] occurrences matches {0..1} matches {    -- Locations
-						items cardinality matches {1..*; unordered} matches {
+					CLUSTER[at0014] occurrences matches {0..1} matches {    -- Center
+						items cardinality matches {2..*; unordered} matches {
 							ELEMENT[at0015] occurrences matches {0..1} matches {    -- Center name
 								value matches {
 									DV_TEXT matches {*}
 								}
 							}
-							ELEMENT[at0017] occurrences matches {0..1} matches {    -- Center type
+							ELEMENT[at0017] matches {    -- Center type
 								value matches {
 									DV_CODED_TEXT matches {
 										defining_code matches {
@@ -71,19 +84,6 @@ definition
 								}
 							}
 						}
-					}
-					allow_archetype CLUSTER[at0010] occurrences matches {0..*} matches {    -- Grafts
-						include
-							archetype_id/value matches {/.*/}
-					}
-					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Structured body site
-						value matches {
-							DV_CODED_TEXT matches {*}
-						}
-					}
-					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Organ specific details
-						include
-							archetype_id/value matches {/.*/}
 					}
 					allow_archetype CLUSTER[at0013] occurrences matches {0..*} matches {    -- Other details
 						include
@@ -154,7 +154,7 @@ ontology
 					description = <"*">
 				>
 				["at0014"] = <
-					text = <"Locations">
+					text = <"Center">
 					description = <"*">
 				>
 				["at0015"] = <
