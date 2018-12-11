@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"98c9de8c0cf9df8a9da2cb811a6edc59">
+		["MD5-CAM-1.0.1"] = <"6f9e7ed98ea83829e2f50746ca95f9f8">
 		["build_uid"] = <"44b1f7cb-f948-3d41-8b62-f5ba55221d4d">
 	>
 
@@ -49,10 +49,19 @@ definition
 						items cardinality matches {1..1; unordered} matches {
 							CLUSTER[at0007] occurrences matches {0..1} matches {    -- Patient Deceased
 								items cardinality matches {1..*; unordered} matches {
-									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Time between transplant and death
+									ELEMENT[at0016] matches {    -- Time between transplant and death
 										value matches {
 											DV_DURATION matches {
 												value matches {PD/|>=P0D|}
+											}
+										}
+									}
+									ELEMENT[at0021] matches {    -- Cause of death [unified]
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[ac0000]
+												}
 											}
 										}
 									}
@@ -60,10 +69,19 @@ definition
 							}
 							CLUSTER[at0009] occurrences matches {0..1} matches {    -- Graft Failure
 								items cardinality matches {1..*; unordered} matches {
-									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Time between transplant and irreversible graft failure
+									ELEMENT[at0017] matches {    -- Time between transplant and irreversible graft failure
 										value matches {
 											DV_DURATION matches {
 												value matches {PD/|>=P0D|}
+											}
+										}
+									}
+									ELEMENT[at0022] matches {    -- Cause of graft failure [unified]
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[ac0001]
+												}
 											}
 										}
 									}
@@ -102,6 +120,7 @@ definition
 	}
 
 ontology
+	terminologies_available = <"ICD10_1998", ...>
 	term_definitions = <
 		["en"] = <
 			items = <
@@ -173,6 +192,34 @@ ontology
 					text = <"Time between transplant and lost to follow up">
 					description = <"*">
 				>
+				["at0021"] = <
+					text = <"Cause of death [unified]">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Cause of graft failure [unified]">
+					description = <"*">
+				>
+			>
+		>
+	>
+	constraint_definitions = <
+		["en"] = <
+			items = <
+				["ac0000"] = <
+					description = <"*">
+				>
+				["ac0001"] = <
+					description = <"*">
+				>
+			>
+		>
+	>
+	constraint_binding = <
+		["ICD10_1998"] = <
+			items = <
+				["ac0000"] = <terminology:ICD10>
+				["ac0001"] = <terminology:ICD10>
 			>
 		>
 	>
