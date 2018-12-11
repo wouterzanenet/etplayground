@@ -1,0 +1,81 @@
+archetype (adl_version=1.4; uid=d7d6c19c-985d-47a3-ad06-08c6a041b6a3)
+	openEHR-EHR-EVALUATION.followup.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2018-12-11">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"f6cd85dd3dceb078d8fb4e8bf1012d45">
+		["build_uid"] = <"191a1f4c-9366-33f8-8ca0-af4d79c41a3b">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Followed Transplant
+		data matches {
+			ITEM_TREE[at0001] matches {    -- ItemTree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0004] occurrences matches {0..*} matches {    -- grafts
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0002] matches {    -- ItemTree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Transplant_ID
+						value matches {
+							DV_IDENTIFIER matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Followed Transplant">
+					description = <"Followup">
+				>
+				["at0001"] = <
+					text = <"ItemTree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"ItemTree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Transplant_ID">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"grafts">
+					description = <"*">
+				>
+			>
+		>
+	>
