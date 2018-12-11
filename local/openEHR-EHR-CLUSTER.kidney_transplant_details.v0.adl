@@ -23,14 +23,13 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"adce291b14f268172751ebaa68001aa2">
+		["MD5-CAM-1.0.1"] = <"27baefc40b61cd4836aa1bd39098c2e0">
 		["build_uid"] = <"dc6a4868-f118-3e58-ade4-8289dc8c7dad">
 	>
 
 definition
 	CLUSTER[at0000] matches {    -- Kidney_Transplant_details
 		items cardinality matches {1..*; unordered} matches {
-			ELEMENT[at0002] occurrences matches {0..1} matches {*}    -- DV_BOOLEAN
 			ELEMENT[at0003] occurrences matches {0..1} matches {    -- Pre-emptive transplant
 				value matches {
 					DV_CODED_TEXT matches {
@@ -59,10 +58,6 @@ ontology
 				["at0000"] = <
 					text = <"Kidney_Transplant_details">
 					description = <"Kidney_Transplant_details">
-				>
-				["at0002"] = <
-					text = <"DV_BOOLEAN">
-					description = <"*">
 				>
 				["at0003"] = <
 					text = <"Pre-emptive transplant">
