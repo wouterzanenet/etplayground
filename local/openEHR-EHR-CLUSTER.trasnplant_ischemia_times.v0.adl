@@ -23,12 +23,12 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"4ae77f989d122d7cc8813501da500205">
+		["MD5-CAM-1.0.1"] = <"47921940792164c1c4fdc4d7f332ac05">
 		["build_uid"] = <"1a0bff84-7163-39f1-970d-302133fe4c67">
 	>
 
 definition
-	CLUSTER[at0000] matches {    -- Trasnplant_ischemia_times
+	CLUSTER[at0000] matches {    -- Transplant_ischemia_times
 		items cardinality matches {1..*; unordered} matches {
 			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Warm Ischemia Time 1 (WIT1)
 				value matches {
@@ -67,7 +67,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Trasnplant_ischemia_times">
+					text = <"Transplant_ischemia_times">
 					description = <"Trasnplant_ischemia_times">
 				>
 				["at0001"] = <
