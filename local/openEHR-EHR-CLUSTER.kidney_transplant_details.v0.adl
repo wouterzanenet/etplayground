@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"b66faae2d4f80b129171fdd7bcedaab9">
+		["MD5-CAM-1.0.1"] = <"adce291b14f268172751ebaa68001aa2">
 		["build_uid"] = <"dc6a4868-f118-3e58-ade4-8289dc8c7dad">
 	>
 
@@ -31,6 +31,24 @@ definition
 	CLUSTER[at0000] matches {    -- Kidney_Transplant_details
 		items cardinality matches {1..*; unordered} matches {
 			ELEMENT[at0002] occurrences matches {0..1} matches {*}    -- DV_BOOLEAN
+			ELEMENT[at0003] occurrences matches {0..1} matches {    -- Pre-emptive transplant
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {
+							[local::
+							at0004,    -- Yes
+							at0005]    -- No
+						}
+					}
+				}
+			}
+			ELEMENT[at0006] occurrences matches {0..1} matches {    -- Time between frist dialysis and transplant
+				value matches {
+					DV_DURATION matches {
+						value matches {PD/|>=PT0S|}
+					}
+				}
+			}
 		}
 	}
 
@@ -44,6 +62,22 @@ ontology
 				>
 				["at0002"] = <
 					text = <"DV_BOOLEAN">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Pre-emptive transplant">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Yes">
+					description = <"Yes">
+				>
+				["at0005"] = <
+					text = <"No">
+					description = <"No">
+				>
+				["at0006"] = <
+					text = <"Time between frist dialysis and transplant">
 					description = <"*">
 				>
 			>
