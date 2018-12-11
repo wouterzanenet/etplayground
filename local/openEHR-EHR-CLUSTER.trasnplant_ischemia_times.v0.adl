@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"0ee65834d1692d7ce544deb0a20849d7">
+		["MD5-CAM-1.0.1"] = <"e29a7bdcc5f1a7dd046692cd96492b82">
 		["build_uid"] = <"1a0bff84-7163-39f1-970d-302133fe4c67">
 	>
 
@@ -40,7 +40,7 @@ definition
 			ELEMENT[at0005] occurrences matches {0..1} matches {    -- Warme Ischemia Time 2 (WIT2)
 				value matches {
 					DV_DURATION matches {
-						value matches {PTM/|>=PT0S|}
+						value matches {PTHM/|>=PT0S|}
 					}
 				}
 			}
