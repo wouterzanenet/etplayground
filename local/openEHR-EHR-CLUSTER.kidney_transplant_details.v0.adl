@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"27baefc40b61cd4836aa1bd39098c2e0">
+		["MD5-CAM-1.0.1"] = <"532f2fcdecf52e2e6c7282c5c0d64b09">
 		["build_uid"] = <"dc6a4868-f118-3e58-ade4-8289dc8c7dad">
 	>
 
@@ -46,6 +46,11 @@ definition
 					DV_DURATION matches {
 						value matches {PD/|>=PT0S|}
 					}
+				}
+			}
+			ELEMENT[at0007] occurrences matches {0..1} matches {    -- Number of previous kidney transplants
+				value matches {
+					DV_COUNT matches {*}
 				}
 			}
 		}
@@ -73,6 +78,10 @@ ontology
 				>
 				["at0006"] = <
 					text = <"Time between frist dialysis and transplant">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Number of previous kidney transplants">
 					description = <"*">
 				>
 			>
