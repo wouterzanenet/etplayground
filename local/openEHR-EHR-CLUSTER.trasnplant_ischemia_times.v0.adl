@@ -1,5 +1,5 @@
 archetype (adl_version=1.4; uid=7ec27220-b0d7-4dae-9d10-c039f38b052b)
-	openEHR-EHR-CLUSTER.trasnplant_ischemia_times.v0
+	openEHR-EHR-CLUSTER.transplant_ischemia_times.v0
 
 concept
 	[at0000]
@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"47921940792164c1c4fdc4d7f332ac05">
+		["MD5-CAM-1.0.1"] = <"0ee65834d1692d7ce544deb0a20849d7">
 		["build_uid"] = <"1a0bff84-7163-39f1-970d-302133fe4c67">
 	>
 
@@ -68,7 +68,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"Transplant_ischemia_times">
-					description = <"Trasnplant_ischemia_times">
+					description = <"Transplant_ischemia_times">
 				>
 				["at0001"] = <
 					text = <"Warm Ischemia Time 1 (WIT1)">
