@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"7a970abf6753fa86dc51a36c4b726a65">
+		["MD5-CAM-1.0.1"] = <"471afbfd0ab9efc41447502ebcba0bb8">
 		["build_uid"] = <"138ed2c6-81b9-3066-9886-c57b0661c0c7">
 	>
 
@@ -98,6 +98,11 @@ definition
 					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Transplantation_ID
 						value matches {
 							DV_IDENTIFIER matches {*}
+						}
+					}
+					ELEMENT[at0021] occurrences matches {0..1} matches {    -- Transplant sequence
+						value matches {
+							DV_COUNT matches {*}
 						}
 					}
 				}
@@ -180,6 +185,10 @@ ontology
 				["at0020"] = <
 					text = <"Transplant at Center">
 					description = <"Center that the transplant procedure took place at">
+				>
+				["at0021"] = <
+					text = <"Transplant sequence">
+					description = <"Should be used to indicate the sequence of the transplant, specifically in cases when transplant  date or Transplantlant_ID cannot discriminate the order of the transplants. For instance transplant _ID is a random unique ID and Transplant date is only recorded as Year of transplant.">
 				>
 			>
 		>
