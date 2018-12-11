@@ -1,0 +1,51 @@
+archetype (adl_version=1.4; uid=d05b8437-5751-4190-bc57-f8865fcdd177)
+	openEHR-EHR-CLUSTER.kidney_transplant_details.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2018-12-11">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"b66faae2d4f80b129171fdd7bcedaab9">
+		["build_uid"] = <"dc6a4868-f118-3e58-ade4-8289dc8c7dad">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Kidney_Transplant_details
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0002] occurrences matches {0..1} matches {*}    -- DV_BOOLEAN
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Kidney_Transplant_details">
+					description = <"Kidney_Transplant_details">
+				>
+				["at0002"] = <
+					text = <"DV_BOOLEAN">
+					description = <"*">
+				>
+			>
+		>
+	>
