@@ -1,5 +1,5 @@
 archetype (adl_version=1.4; uid=7ec27220-b0d7-4dae-9d10-c039f38b052b)
-	openEHR-EHR-CLUSTER.transplant_ischemia_times.v0
+	openEHR-EHR-CLUSTER.transplant2_ischemia_times.v0
 
 concept
 	[at0000]
@@ -23,12 +23,12 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"0ee65834d1692d7ce544deb0a20849d7">
+		["MD5-CAM-1.0.1"] = <"dd4c4a6cde2203ddef3bd3285fdacd86">
 		["build_uid"] = <"1a0bff84-7163-39f1-970d-302133fe4c67">
 	>
 
 definition
-	CLUSTER[at0000] matches {    -- Transplant_ischemia_times
+	CLUSTER[at0000] matches {    -- Transplant2_ischemia_times
 		items cardinality matches {1..*; unordered} matches {
 			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Warm Ischemia Time 1 (WIT1)
 				value matches {
@@ -67,8 +67,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Transplant_ischemia_times">
-					description = <"Transplant_ischemia_times">
+					text = <"Transplant2_ischemia_times">
+					description = <"Transplant2_ischemia_times">
 				>
 				["at0001"] = <
 					text = <"Warm Ischemia Time 1 (WIT1)">
