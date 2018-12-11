@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"471afbfd0ab9efc41447502ebcba0bb8">
+		["MD5-CAM-1.0.1"] = <"16c34306a922014c8fa5f84a4ebec1a9">
 		["build_uid"] = <"138ed2c6-81b9-3066-9886-c57b0661c0c7">
 	>
 
@@ -37,7 +37,7 @@ definition
 							DV_DATE_TIME matches {*}
 						}
 					}
-					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Structured body site
+					ELEMENT[at0011] occurrences matches {0..*} matches {    -- Structured body site
 						value matches {
 							DV_CODED_TEXT matches {*}
 						}
@@ -53,11 +53,6 @@ definition
 					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Organ specific details
 						include
 							archetype_id/value matches {/.*/}
-					}
-					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Pre-emptive transplant
-						value matches {
-							DV_TEXT matches {*}
-						}
 					}
 					CLUSTER[at0014] occurrences matches {0..1} matches {    -- Center
 						items cardinality matches {2..*; unordered} matches {
@@ -136,10 +131,6 @@ ontology
 				>
 				["at0007"] = <
 					text = <"Transplantation_ID">
-					description = <"*">
-				>
-				["at0009"] = <
-					text = <"Pre-emptive transplant">
 					description = <"*">
 				>
 				["at0010"] = <
