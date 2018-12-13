@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"d2061265ce0f8decaefcf044731d77c4">
+		["MD5-CAM-1.0.1"] = <"604a80f58b5cc11e5775e214647897db">
 		["build_uid"] = <"138ed2c6-81b9-3066-9886-c57b0661c0c7">
 	>
 
@@ -37,18 +37,14 @@ definition
 							DV_DATE matches {*}
 						}
 					}
+					allow_archetype CLUSTER[at0010] occurrences matches {0..*} matches {    -- Transplants
+						include
+							archetype_id/value matches {/.*/}
+					}
 					ELEMENT[at0011] occurrences matches {0..*} matches {    -- Structured body site
 						value matches {
 							DV_CODED_TEXT matches {*}
 						}
-					}
-					allow_archetype CLUSTER[at0010] occurrences matches {0..*} matches {    -- Transplant
-						include
-							archetype_id/value matches {/.*/}
-					}
-					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Organ specific details
-						include
-							archetype_id/value matches {/.*/}
 					}
 					CLUSTER[at0014] occurrences matches {0..1} matches {    -- Center
 						items cardinality matches {2..*; unordered} matches {
@@ -126,15 +122,11 @@ ontology
 					description = <"*">
 				>
 				["at0010"] = <
-					text = <"Transplant">
+					text = <"Transplants">
 					description = <"*">
 				>
 				["at0011"] = <
 					text = <"Structured body site">
-					description = <"*">
-				>
-				["at0012"] = <
-					text = <"Organ specific details">
 					description = <"*">
 				>
 				["at0013"] = <
