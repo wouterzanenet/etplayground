@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"604a80f58b5cc11e5775e214647897db">
+		["MD5-CAM-1.0.1"] = <"3683a3eb5496678286e26db33d61e591">
 		["build_uid"] = <"138ed2c6-81b9-3066-9886-c57b0661c0c7">
 	>
 
@@ -35,6 +35,11 @@ definition
 					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Transplant date
 						value matches {
 							DV_DATE matches {*}
+						}
+					}
+					ELEMENT[at0022] occurrences matches {0..1} matches {    -- Multi organ transplant
+						value matches {
+							DV_BOOLEAN matches {*}
 						}
 					}
 					allow_archetype CLUSTER[at0010] occurrences matches {0..*} matches {    -- Transplants
@@ -164,6 +169,10 @@ ontology
 				["at0021"] = <
 					text = <"Transplant sequence">
 					description = <"Should be used to indicate the sequence of the transplant, specifically in cases when transplant  date or Transplantlant_ID cannot discriminate the order of the transplants. For instance transplant _ID is a random unique ID and Transplant date is only recorded as Year of transplant.">
+				>
+				["at0022"] = <
+					text = <"Multi organ transplant">
+					description = <"*">
 				>
 			>
 		>
