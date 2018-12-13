@@ -23,22 +23,33 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"baafd749a57b16373da1e42097264ec6">
+		["MD5-CAM-1.0.1"] = <"58e274e6bf7aefdf7fa90b4fc7fe0dfe">
 		["build_uid"] = <"1a7ed3d2-c9bc-3808-b52d-c9bfec2f4dac">
 	>
 
 definition
 	CLUSTER[at0000] occurrences matches {1..*} matches {    -- Transplant
 		items cardinality matches {1..*; unordered} matches {
-			allow_archetype CLUSTER[at0001] matches {    -- Graft
+			ELEMENT[at0006] matches {    -- Graft name
+				value matches {
+					DV_CODED_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0008] occurrences matches {0..1} matches {    -- Graft_ID
+				value matches {
+					DV_IDENTIFIER matches {*}
+				}
+			}
+			ELEMENT[at0009] occurrences matches {0..1} matches {    -- Donor_ID
+				value matches {
+					DV_IDENTIFIER matches {*}
+				}
+			}
+			allow_archetype CLUSTER[at0003] occurrences matches {0..*} matches {    -- Procedure details
 				include
 					archetype_id/value matches {/.*/}
 			}
-			allow_archetype CLUSTER[at0003] occurrences matches {0..1} matches {    -- Procedure details
-				include
-					archetype_id/value matches {/.*/}
-			}
-			allow_archetype CLUSTER[at0004] occurrences matches {0..1} matches {    -- Organ specific details
+			allow_archetype CLUSTER[at0004] occurrences matches {0..*} matches {    -- Organ specific details
 				include
 					archetype_id/value matches {/.*/}
 			}
@@ -53,16 +64,24 @@ ontology
 					text = <"Transplant">
 					description = <"Transplant">
 				>
-				["at0001"] = <
-					text = <"Graft">
-					description = <"*">
-				>
 				["at0003"] = <
 					text = <"Procedure details">
 					description = <"*">
 				>
 				["at0004"] = <
 					text = <"Organ specific details">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Graft name">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Graft_ID">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Donor_ID">
 					description = <"*">
 				>
 			>
