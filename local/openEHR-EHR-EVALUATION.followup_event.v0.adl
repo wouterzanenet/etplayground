@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"6f9e7ed98ea83829e2f50746ca95f9f8">
+		["MD5-CAM-1.0.1"] = <"7bb934df2c91467080b722c6a75bd785">
 		["build_uid"] = <"44b1f7cb-f948-3d41-8b62-f5ba55221d4d">
 	>
 
@@ -63,6 +63,11 @@ definition
 													[ac0000]
 												}
 											}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Cause of death [local]
+										value matches {
+											DV_CODED_TEXT matches {*}
 										}
 									}
 								}
@@ -198,6 +203,10 @@ ontology
 				>
 				["at0022"] = <
 					text = <"Cause of graft failure [unified]">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Cause of death [local]">
 					description = <"*">
 				>
 			>
